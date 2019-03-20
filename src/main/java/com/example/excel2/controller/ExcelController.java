@@ -1,5 +1,6 @@
 package com.example.excel2.controller;
 
+import com.example.excel2.service.ExcelService;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
 import org.apache.poi.ss.usermodel.Cell;
@@ -7,6 +8,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +25,15 @@ import java.util.*;
 @Controller
 public class ExcelController {
 
+    @Autowired
+    private ExcelService excelService;
+
     @GetMapping("/")
     public String exMain(HttpServletRequest request){
         Set pathSet = request.getSession().getServletContext().getResourcePaths("/");
 
-        System.out.println(pathSet);
+        System.out.println(excelService.getCampaignApply3());
+
         return "index";
     }
 
